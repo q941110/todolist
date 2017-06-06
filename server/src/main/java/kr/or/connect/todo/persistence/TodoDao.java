@@ -1,6 +1,7 @@
 package kr.or.connect.todo.persistence;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,5 +55,16 @@ public class TodoDao {
 	public int deleteCompleted() {
 		Map<String, Object> params = Collections.emptyMap();
 		return jdbc.update(TodoSqls.DELETE_COMPLETED, params);
+	}
+	
+	public Todo selectById(Integer id) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.queryForObject(TodoSqls.SELECT_BY_ID, params, rowMapper);
+	}
+	
+	public int countCompleted() {
+		Map<String, Object> params = Collections.emptyMap();
+		return jdbc.queryForObject(TodoSqls.COUNT_COMPLETED, params, Integer.class);
 	}
 }
