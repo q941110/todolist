@@ -50,7 +50,7 @@ function viewAll() {
 }
 
 function listAppend(data) {
-	var list;
+	var list = "";
 	
 	for(var i=0; i<data.length; i++) {
 		if(data[i].completed == 1) {
